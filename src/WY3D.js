@@ -19,11 +19,11 @@ WY3D.extend = function ( obj, source ) {
 
     var safeHasOwnProperty = {}.hasOwnProperty;
 
-    for ( var prop in source ) {
+    for ( var property in source ) {
 
-      if ( safeHasOwnProperty.call( source, prop ) ) {
+      if ( safeHasOwnProperty.call( source, property ) ) {
 
-        obj[prop] = source[prop];
+        obj[property] = source[property];
 
       }
 
@@ -53,7 +53,7 @@ WY3D.extend = function ( obj, source ) {
 
   }
 
-  if ( self.requestAnimationFrame === undefined && self['setTimeout'] !== undefined ) {
+  if ( self.requestAnimationFrame === undefined && self.setTimeout !== undefined ) {
 
     self.requestAnimationFrame = function ( callback ) {
 
@@ -66,9 +66,9 @@ WY3D.extend = function ( obj, source ) {
 
   }
 
-  if( self.cancelAnimationFrame === undefined && self['clearTimeout'] !== undefined ) {
+  if( self.cancelAnimationFrame === undefined && self.clearTimeout !== undefined ) {
 
-    self.cancelAnimationFrame = function ( id ) { self.clearTimeout( id ) };
+    self.cancelAnimationFrame = function ( id ) { self.clearTimeout( id ); };
 
   }
 
