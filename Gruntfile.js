@@ -9,10 +9,27 @@ module.exports = function (grunt) {
     // my original builder, which was not really well organized:
     var fileGroups = {
         core: [
-            "WY3D.js"
+            "WY3D.js",
+            "core/face3.js",
+            "core/renderer.js",
+            "core/webgl_program.js",
+            "core/object3d.js",
+            "core/mesh.js",
+        ],
+        geometries: [
+            "geometries/geometry.js",
+            "geometries/plane_geometry.js"
+        ],
+        utils: [
+            "utils/utils.js"
         ],
         math: [
-            "math/vector3.js"
+            "math/quaternion.js",
+            "math/euler.js",
+            "math/vector2.js",
+            "math/vector3.js",
+            "math/matrix3.js",
+            "math/matrix4.js"
         ]
     };
     Object.keys(fileGroups).forEach(function (key) {
@@ -33,7 +50,10 @@ module.exports = function (grunt) {
             all: [
                 "Gruntfile.js",
                 "<%= lib.src %>/{,*/}*.js"
-            ]
+            ],
+            options: {
+                jshintrc: ".jshintrc"
+            }
         },
         clean: {
             dist: ["<%= lib.dist %>/*"]
@@ -45,7 +65,9 @@ module.exports = function (grunt) {
             all: {
                 src: [
                     fileGroups.core,
-                    fileGroups.math
+                    fileGroups.geometries,
+                    fileGroups.math,
+                    fileGroups.utils
                 ],
                 dest: "<%= lib.dist %>/WY3D.js"
             }
